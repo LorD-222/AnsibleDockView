@@ -1,0 +1,51 @@
+---
+- name: Create directory elasticsearch
+  file:
+    path: "{{default_path}}/elk/elasticsearch"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy elasticsearch configuration
+  copy:
+    src: "./files/elk/elasticsearch/elasticsearch.yml" 
+    dest: "{{default_path}}/elk/elasticsearch/elasticsearch.yml"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart elasticsearch
+
+- name: Create directory kibana
+  file:
+    path: "{{default_path}}/elk/kibana"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy kibana configuration
+  copy:
+    src: "./files/elk/kibana/kibana.yml" 
+    dest: "{{default_path}}/elk/kibana/kibana.yml"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart kibana
+
+- name: Create directory logstash
+  file:
+    path: "{{default_path}}/elk/logstash"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy logstash configuration
+  copy:
+    src: "./files/elk/logstash/logstash.conf" 
+    dest: "{{default_path}}/elk/logstash/logstash.conf"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart logstash

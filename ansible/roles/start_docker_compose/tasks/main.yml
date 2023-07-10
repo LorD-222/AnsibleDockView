@@ -1,0 +1,25 @@
+---
+- name: Copy docker-compose 
+  copy:
+    src: "./files/docker-compose/{{ host_type }}-host/" 
+    dest: "{{default_path}}"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Check if docker-compose file exists
+  stat:
+    path: "{{ default_path }}/docker-compose.yml"
+  register: docker_compose_file
+
+- name: Fail if docker-compose file does not exist
+  fail:
+    msg: "The docker-compose file at {{ default_path }}/docker-compose.yml does not exist"
+  when: not docker_compose_file.stat.exists
+
+- name: Run docker-compose up
+  command:
+    cmd: docker-compose up -d
+    chdir: "{{ default_path }}"
+  become: yes
+  notify: check docker-compose status

@@ -1,0 +1,3 @@
+---
+- name: restart alertmanager
+  command: docker restart alertmanager

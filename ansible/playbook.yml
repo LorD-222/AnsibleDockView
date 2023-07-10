@@ -1,0 +1,20 @@
+---
+- name: Install and configure monitoring host
+  hosts: monitoring_host
+  gather_facts: yes
+  roles:
+    - role: install_docker
+    - role: configure_prometheus
+    - role: configure_grafana
+    - role: configure_elk
+    - role: configure_alertmanager
+    - role: configure_filebeat
+    - role: start_docker_compose
+
+- name: Install and configure monitored hosts
+  hosts: monitored_host
+  gather_facts: yes
+  roles:
+    - role: install_docker
+    - role: configure_filebeat
+    - role: start_docker_compose

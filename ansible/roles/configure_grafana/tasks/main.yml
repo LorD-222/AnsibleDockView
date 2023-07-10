@@ -1,0 +1,43 @@
+---
+- name: Create directory dashboards
+  file:
+    path: "{{default_path}}/grafana/dashboards"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Create directory grafana
+  file:
+    path: "{{default_path}}/grafana/datasources"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy grafana configuration
+  copy:
+    src: "./files/grafana/grafana.ini" 
+    dest: "{{default_path}}/grafana/grafana.ini"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart grafana
+
+- name: Copy dashboards configuration
+  copy:
+    src: "./files/grafana/dashboards/" 
+    dest: "{{default_path}}/grafana/dashboards/"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart grafana
+
+- name: Copy datasources configuration
+  copy:
+    src: "./files/grafana/datasources/datasource.yml" 
+    dest: "{{default_path}}/grafana/datasources/datasource.yml"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart grafana

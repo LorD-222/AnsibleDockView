@@ -1,0 +1,9 @@
+---
+- name: restart elasticsearch
+  command: docker restart elasticsearch
+
+- name: restart kibana
+  command: docker restart kibana
+
+- name: restart logstash
+  command: docker restart logstash

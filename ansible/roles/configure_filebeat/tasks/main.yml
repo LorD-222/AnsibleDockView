@@ -1,0 +1,17 @@
+---
+- name: Create directory filebeat
+  file:
+    path: "{{default_path}}/filebeat"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Template Filebeat configuration
+  template:
+    src: "./files/filebeat/filebeat.yml.j2"
+    dest: "{{default_path}}/filebeat/filebeat.yml"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart filebeat

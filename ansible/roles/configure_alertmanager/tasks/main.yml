@@ -1,0 +1,17 @@
+---
+- name: Ensure Prometheus configuration directory exists
+  file:
+    path: "{{default_path}}/alertmanager"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy alertmanager configuration
+  copy:
+    src: "./files/alertmanager/alertmanager.yml" 
+    dest: "{{default_path}}/alertmanager/alertmanager.yml"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart alertmanager

@@ -1,0 +1,7 @@
+---
+- name: check docker-compose status
+  command:
+    cmd: docker-compose ps
+    chdir: "{{ default_path }}"
+  register: docker_compose_status_result
+  failed_when: "'Up' not in docker_compose_status_result.stdout"

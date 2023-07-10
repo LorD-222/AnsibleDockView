@@ -1,0 +1,26 @@
+---
+- name: Ensure Prometheus configuration directory exists
+  file:
+    path: "{{default_path}}/prometheus"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy Prometheus configuration
+  copy:
+    src: "./files/prometheus/prometheus.yml" 
+    dest: "{{default_path}}/prometheus/prometheus.yml"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart prometheus
+
+- name: Copy Prometheus configuration
+  copy:
+    src: "./files/prometheus/alerts.yml" 
+    dest: "{{default_path}}/prometheus/alerts.yml"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart prometheus
