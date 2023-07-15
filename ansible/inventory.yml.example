@@ -1,22 +1,22 @@
 all:
   hosts:
     monitoring_host:
-      ansible_host: xxx
-      ansible_user: root
-      ansible_ssh_pass: xxx
+      ansible_host: ansible_host
+      ansible_user: ansible_user
+      ansible_ssh_pass: ansible_ssh_pass
       host_type: monitoring
 
     monitored_host:
-      ansible_host: 5.35.32.28
-      ansible_user: root
-      ansible_ssh_pass: d4ajPtwTL98ugP6r
+      ansible_host: ansible_host
+      ansible_user: ansible_user
+      ansible_ssh_pass: ansible_ssh_pass
       host_type: monitored
 
 
 # For windows
     # monitoring_host1:
-    #   ansible_host: <IP адрес monitoring_host1>
-    #   ansible_user: <имя пользователя для monitoring_host1>
-    #   ansible_password: <пароль для monitoring_host1>
+    #   ansible_host: ansible_host
+    #   ansible_user: ansible_user
+    #   ansible_password: ansible_password
     #   ansible_connection: winrm
     #   ansible_winrm_transport: basic
